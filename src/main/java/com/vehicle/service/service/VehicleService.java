@@ -15,9 +15,11 @@ public class VehicleService {
     VehicleDao vehicleDao;
     IVehicleBookingService bookingService;
     BookingServiceFactory bookingServiceFactory;
+    VehicleDaoImplFactory vehicleDaoImplFactory;
 
     public VehicleService(BookingStrategy bookingStrategy) {
-        this.vehicleDao = new VehicleDaoImpl();
+//        this.vehicleDaoImplFactory=new VehicleDaoImplFactory();
+        this.vehicleDao = vehicleDaoImplFactory.getVehicleDaoImpl("mysql");
         this.bookingServiceFactory = new BookingServiceFactory();
         this.bookingService = bookingServiceFactory.getBookingService(bookingStrategy);
     }
